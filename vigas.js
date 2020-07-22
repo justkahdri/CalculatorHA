@@ -3,10 +3,36 @@ var h;
 var bw;
 var d;
 var viga = true;
+var prin;
+var calcular;
+
+var res = document.getElementById('res');
+var copiar = document.getElementById('copiar');
 //Disparadores de funciones al final del script
 
-function Comienzo() {
-  l = document.getElementById('largo')
+function Viga() {
+
+  var prin = document.getElementById('prin');
+
+  console.log('llego a la viga');
+  prin.innerHTML = `
+    Largo de Viga(m):
+    <input type="number" id="largo" />
+    <br />Tipo:
+    <button type="button" id="tipo">Isostatica</button>
+    <br />
+    <input type="button" id="calcular" value="Calcular" />
+  `;
+
+  var tipo = document.getElementById('tipo');
+  tipo.addEventListener('click', CambiarTipo);
+  var calcular = document.getElementById('calcular');
+  calcular.addEventListener('click', VComienzo);
+
+}
+
+function VComienzo() {
+  l = document.getElementById('largo');
 //Tomo el largo ingresado y lo asigno a la variable "l".
   l = parseFloat(l.value);
   l = l * 100;
@@ -61,6 +87,10 @@ function copiarAlPortapapeles(id_elemento) {
   aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
   // Asigna el contenido del elemento especificado al valor del campo
 
+  var str = aux.value;
+  aux.value = str.replace(/<br\s*[\/]?>/gi, "\n");
+  //Borra los saltos de linea de HTML
+
   document.body.appendChild(aux);
   // Añade el campo a la página
 
@@ -76,12 +106,3 @@ function copiarAlPortapapeles(id_elemento) {
   // Elimina el campo de la página
 
 }
-
-
-var tipo = document.getElementById('tipo');
-tipo.addEventListener('click', CambiarTipo);
-
-var res = document.getElementById('res');
-var copiar = document.getElementById('copiar');
-var calcular = document.getElementById('calcular');
-calcular.addEventListener('click', Comienzo);

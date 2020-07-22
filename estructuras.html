@@ -6,16 +6,20 @@
   </head>
   <body>
     <p>
-      Largo de Viga(m):
-      <input type="number" id="largo" />
-      <br />Tipo:
-      <button type="button" id="tipo">Isostatica</button>
-      <br />
-      <input type="button" id="calcular" value="Calcular" />
+      <label for='ejercicio'>Seleccione un tipo de calculo:</label>
+      <select id='ejercicio' name='ejercicio'>
+        <option value='columna'>Columnas</option>
+        <option value='viga'>Vigas</option>
+        <option value='losa'>Losas</option>
+      </select>
+      <br>
+      <input type='button' id='inicio' value='Comenzar' />
     </p>
+    <p id="prin"></p>
     <p id="res"></p>
     <p id="copiar"></p>
-    <script src="calculador.js">
-    </script>
+    <script src="brain.js"></script>
+    <script src="columnas.js"></script>
+    <script src="vigas.js"></script>
   </body>
 </html>
