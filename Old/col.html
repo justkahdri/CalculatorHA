@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>
+      Carga que soporta la columna (m<sup>2</sup>):
+      <input type="number" id="carga" />
+      <br />Cantidad de Pisos:
+      <input type="number" id="pisos" />
+      <br />
+      <label for="H">Seleccione el tipo de Hormigón:</label>
+      <select id="H" name="H">
+        <option value="35">H35</option>
+        <option value="30">H30</option>
+        <option value="25">H25</option>
+        <option value="20">H20</option>
+      </select>
+      <br />
+      <input type="button" id="calcular" value="Calcular" />
+    </p>
+    <p id="res"></p>
+    <p id="copiar"></p>
+    <script src="columnas.js">
+    </script>
+  </body>
+</html>
