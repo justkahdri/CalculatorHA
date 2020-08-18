@@ -16,12 +16,14 @@ function Viga() {
 
   console.log('llego a la viga');
   prin.innerHTML = `
-    Largo de Viga(m):
-    <input type="number" id="largo" />
-    <br />Tipo:
-    <button type="button" id="tipo">Isostatica</button>
-    <br />
-    <input type="button" id="calcular" value="Calcular" />
+    <p>
+      Largo de Viga(m):
+      <input type="number" id="largo" />
+      <br />Tipo:
+      <button type="button" id="tipo">Isostatica</button>
+      <br />
+      <input type="button" id="calcular" value="Calcular" />
+    </p>
   `;
 
   var tipo = document.getElementById('tipo');

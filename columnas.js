@@ -17,20 +17,22 @@ function Columna() {
 
   console.log('llego a la columna');
   prin.innerHTML = `
-    Carga que soporta la columna (m<sup>2</sup>):
-    <input type='number' id='carga' />
-    <br />Cantidad de Pisos:
-    <input type='number' id='pisos' />
-    <br />
-    <label for='H'>Seleccione el tipo de Hormigón:</label>
-    <select id='H' name='H'>
-      <option value='35'>H35</option>
-      <option value='30'>H30</option>
-      <option value='25'>H25</option>
-      <option value='20'>H20</option>
-      </select>
+    <p>
+      Carga que soporta la columna (m<sup>2</sup>):
+      <input type='number' id='carga' />
+      <br />Cantidad de Pisos:
+      <input type='number' id='pisos' />
       <br />
-      <input type='button' id='calcular' value='Calcular' />
+      <label for='H'>Seleccione el tipo de Hormigón:</label>
+      <select id='H' name='H'>
+        <option value='35'>H35</option>
+        <option value='30'>H30</option>
+        <option value='25'>H25</option>
+        <option value='20'>H20</option>
+        </select>
+        <br />
+        <input type='button' id='calcular' value='Calcular' />
+    </p>
   `;
 
   var calcular = document.getElementById('calcular');
