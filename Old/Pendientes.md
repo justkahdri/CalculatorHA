@@ -1,3 +1,0 @@
-- Hay que arreglar la funcion copiar en columnas.js
-- Hay que poner opciones limitadas en el H de columnas.js
-- Hay que juntar abos html y js en un solo programa
