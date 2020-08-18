@@ -6,8 +6,12 @@ function Clase () {
   else if (ejercicio.value == 'viga') {
     Viga ();
   }
+  else if (ejercicio.value == 'losa') {
+    Losa ();
+  }
   else {
     console.log('fallo la seleccion de clase');
+    alert('Ocurrio un error al iniciar el ejercicio');
   }
 }
 
