@@ -1,2 +1,0 @@
-- Hay que arreglar la funcion copiar en columnas.js
-- Agregar Losas
