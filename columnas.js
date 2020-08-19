@@ -5,8 +5,6 @@ var cx;
 var cy;
 var h = 25;
 var pisos = 1;
-var prin;
-var calcular;
 
 var res = document.getElementById('res');
 var copiar = document.getElementById('copiar');
@@ -29,9 +27,9 @@ function Columna() {
         <option value='30'>H30</option>
         <option value='25'>H25</option>
         <option value='20'>H20</option>
-        </select>
-        <br />
-        <input type='button' id='calcular' value='Calcular' />
+      </select>
+      <br />
+      <input type='button' id='calcular' value='Calcular' />
     </p>
   `;
 
@@ -75,7 +73,34 @@ function CComienzo() {
     res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
   }
 
-  copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+  copiar.innerHTML = '<button onclick=\'Bases(w)\'>Calcular Bases</button> <br />'; //Inicia la funcion de bases
+  copiar.innerHTML += '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
+}
 
+function Bases(w_columna) {
+  var w_base = w_columna * 1.1
+  var t_adm = 2
+  var ab = (w_base*100) / t_adm
+  var ax = Math.sqrt(ab)
+  if (ax > 100) {
+    ax = Math.ceil(ax);
+    while (ax%5 != 0) { ax += 1; }
+  }
+  else {ax = 100}
+
+//  var ay = ax
+
+  res_bases = '<br />Wb= ' + w_base.toFixed(2) + 'KN <br />';
+  res_bases += 'Tadm= ' + t_adm + ' kg/cm<sup>2</sup> <br />';
+  res_bases += 'a<sub>x</sub>= a<sub>y</sub>= ' + ax + 'cm <br />';
+
+  res.innerHTML += res_bases;
+//  if (cx == cy) { res_bases.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br />'; }
+//  else {
+//    res_bases.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br />';
+//    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
+//  }
+
+  copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 }
