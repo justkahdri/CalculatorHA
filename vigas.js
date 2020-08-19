@@ -79,32 +79,3 @@ function CambiarTipo() {
   viga =! viga
 }
 //Cambio entre Isostatica y Continua dentro del boton de HTML
-
-
-function copiarAlPortapapeles(id_elemento) {
-
-  var aux = document.createElement("input");
-  // Crea un campo de texto "oculto"
-
-  aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
-  // Asigna el contenido del elemento especificado al valor del campo
-
-  var str = aux.value;
-  aux.value = str.replace(/<br\s*[\/]?>/gi, "\n");
-  //Borra los saltos de linea de HTML
-
-  document.body.appendChild(aux);
-  // Añade el campo a la página
-
-  aux.select();
-  // Selecciona el contenido del campo
-
-
-  document.execCommand("copy");
-  // Copia el texto seleccionado
-
-
-  document.body.removeChild(aux);
-  // Elimina el campo de la página
-
-}

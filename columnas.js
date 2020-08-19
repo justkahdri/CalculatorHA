@@ -79,33 +79,3 @@ function CComienzo() {
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 
 }
-
-
-function copiarAlPortapapeles(id_elemento) {
-
-  var aux = document.createElement("input");
-  // Crea un campo de texto "oculto"
-
-  aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
-  // Asigna el contenido del elemento especificado al valor del campo
-
-  var str = aux.value;
-  str = str.replace(/<br\s*[\/]?>/gi, "\n");
-  aux.value = str.replace(/<sub\s*[\/]?>/gi, "\n");
-  //Borra los saltos de linea de HTML
-
-  document.body.appendChild(aux);
-  // Añade el campo a la página
-
-  aux.select();
-  // Selecciona el contenido del campo
-
-
-  document.execCommand("copy");
-  // Copia el texto seleccionado
-
-
-  document.body.removeChild(aux);
-  // Elimina el campo de la página
-
-}

@@ -3,7 +3,10 @@ var y;
 var h;
 var losa = true;
 var beta;
-var alfa;
+var gamma;
+
+var res = document.getElementById('res');
+var copiar = document.getElementById('copiar');
 
 function Losa() {
 
@@ -56,25 +59,44 @@ function LComienzo() {
 
   if (tipo.innerText == 'Unidireccional'){
     console.log('Calculo uni')
-    //var apoyos = document.getElementById('apoyos');
     // Deberia de ir el tipo de apoyo y correr el numero que corresponde
     apoyos = parseInt(apoyos.value);
+    if (mayor/menor < 2 && apoyos != 10) {
+      alert('Error: La losa que ingreso debería ser cruzada');
+      return;
+    }
     h = menor/apoyos;
   }
 
   else {
     console.log('Calculo Cruz')
     beta = mayor/menor; //Resuelvo Beta
-    beta -= 1;
-    alfa = 41 + (beta*8);
-    h = (mayor - 12)/alfa;
+    if (beta>=2){
+      alert('Error: La losa que ingreso debería ser Unidireccional');
+      return;
+    }
+    gamma = beta - 1;
+    gamma = 41 + (gamma*8);
+    h = (mayor - 12)/gamma;
   }
 
-  h = Math.ceil(h);
-  if (h < 8) {h = 8;}
+  if (h < 7) {h = 7;}
+  if (h - parseInt(h) > 0.02) {h = Math.ceil(h);}
+
+  if (tipo.innerText == 'Cruzada') {
+    res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br />';
+    res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br />';
+    res.innerHTML += 'h = ' + parseInt(h) + 'cm <br />';
+  }
+  else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br />';}
+
+
+  copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+//Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 }
 
 function Graficar(){
+  apoyos = document.getElementById('apoyos');
   graficos.innerHTML = `
   <img src="imagenes/${apoyos.value}.png" alt="Grafico de la opcion elegida" style="width:300px;height:200px;">
   `;
