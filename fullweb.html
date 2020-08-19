@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>
+      <label for='ejercicio'>Seleccione un tipo de calculo:</label>
+      <select id='ejercicio' name='ejercicio'>
+        <option value='columna'>Columnas</option>
+        <option value='viga'>Vigas</option>
+        <option value='losa'>Losas</option>
+      </select>
+      <br>
+      <input type='button' id='inicio' value='Comenzar' />
+    </p>
+    <div id="prin"></div>
+    <p id="res"></p>
+    <p id="copiar"></p>
+    <script>
+    function Clase () {
+      var ejercicio = document.getElementById('ejercicio');
+      if (ejercicio.value == 'columna') {
+        Columna ();
+      }
+      else if (ejercicio.value == 'viga') {
+        Viga ();
+      }
+      else if (ejercicio.value == 'losa') {
+        Losa ();
+      }
+      else {
+        console.log('fallo la seleccion de clase');
+        alert('Ocurrio un error al iniciar el ejercicio');
+      }
+    }
+
+    function copiarAlPortapapeles(id_elemento) {
+
+      var aux = document.createElement("input");
+      // Crea un campo de texto "oculto"
+
+      aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
+      // Asigna el contenido del elemento especificado al valor del campo
+
+      var str = aux.value;
+      str = str.replace(/<br\s*[\/]?>/gi, "\n");
+      aux.value = str.replace(/<sub\s*[\/]?>/gi, "\n");
+      //Borra los saltos de linea de HTML
+
+      document.body.appendChild(aux);
+      // Añade el campo a la página
+
+      aux.select();
+      // Selecciona el contenido del campo
+
+
+      document.execCommand("copy");
+      // Copia el texto seleccionado
+
+
+      document.body.removeChild(aux);
+      // Elimina el campo de la página
+
+    }
+
+
+    var ejercicio;
+    var inicio = document.getElementById('inicio');
+    inicio.addEventListener('click', Clase);
+
+    var l;
+    var h;
+    var bw;
+    var d;
+    var viga = true;
+    var prin;
+    var calcular;
+
+    var res = document.getElementById('res');
+    var copiar = document.getElementById('copiar');
+    //Disparadores de funciones al final del script
+
+    function Viga() {
+
+      var prin = document.getElementById('prin');
+
+      console.log('llego a la viga');
+      prin.innerHTML = `
+        <p>
+          Largo de Viga(m):
+          <input type="number" id="largo" />
+          <br />Tipo:
+          <button type="button" id="tipo">Isostatica</button>
+          <br />
+          <input type="button" id="calcular" value="Calcular" />
+        </p>
+      `;
+
+      var tipo = document.getElementById('tipo');
+      tipo.addEventListener('click', CambiarTipo);
+      var calcular = document.getElementById('calcular');
+      calcular.addEventListener('click', VComienzo);
+
+    }
+
+    function VComienzo() {
+      l = document.getElementById('largo');
+    //Tomo el largo ingresado y lo asigno a la variable "l".
+      l = parseFloat(l.value);
+      l = l * 100;
+      l = parseInt(l)
+    //Paso el largo en metros a centimetros
+    //Saco los decimales para evitar cualquier incoherencia de la division
+
+      if (l>700) {
+        alert('Vigas mayores a 7 metros pueden obstruir las carpinterias!');
+      }
+    //Advertencia
+
+      if (tipo.innerText == 'Isostatica') {h = l/10;}
+      else {h = l/12;}
+      h = Math.ceil(h);
+    //Saco los decimales para evitar cualquier incoherencia de la division
+
+      if (h > 20) {
+        while (h%5 != 0) { h += 1; }
+      }
+      else { h = 20; }
+    //Fuerzo el minimo de 20cm y que el resultado salte de 5 en 5
+
+      bw = h/4;
+      if (bw < 12) {bw = 12;}
+      else {bw = Math.ceil(bw);}
+    //Fuerzo el minimo de 12cm y el resultado sin decimales
+
+      d = h - 5;
+
+      res.innerHTML = 'h= ' + h + 'cm <br />';
+      res.innerHTML += 'bw= ' + bw + 'cm <br />';
+      res.innerHTML += 'd= ' + d + 'cm <br />';
+      copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+    //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
+
+    }
+
+
+    function CambiarTipo() {
+      viga ? tipo.innerText = "Isostatica":tipo.innerText = "Continua";
+      viga =! viga
+    }
+    //Cambio entre Isostatica y Continua dentro del boton de HTML
+
+
+    var carga;
+    var w;
+    var ag;
+    var cx;
+    var cy;
+    var h = 25;
+    var pisos = 1;
+    var prin;
+    var calcular;
+
+    var res = document.getElementById('res');
+    var copiar = document.getElementById('copiar');
+
+    function Columna() {
+
+      var prin = document.getElementById('prin');
+
+      console.log('llego a la columna');
+      prin.innerHTML = `
+        <p>
+          Carga que soporta la columna (m<sup>2</sup>):
+          <input type='number' id='carga' />
+          <br />Cantidad de Pisos:
+          <input type='number' id='pisos' />
+          <br />
+          <label for='H'>Seleccione el tipo de Hormigón:</label>
+          <select id='H' name='H'>
+            <option value='35'>H35</option>
+            <option value='30'>H30</option>
+            <option value='25'>H25</option>
+            <option value='20'>H20</option>
+            </select>
+            <br />
+            <input type='button' id='calcular' value='Calcular' />
+        </p>
+      `;
+
+      var calcular = document.getElementById('calcular');
+      calcular.addEventListener('click', CComienzo);
+
+    }
+
+
+    function CComienzo() {
+      carga = document.getElementById('carga');
+      carga = parseFloat(carga.value);
+      h = document.getElementById('H');
+      h = parseInt(h.value);
+      pisos = document.getElementById('pisos');
+      pisos = parseInt(1 + parseInt(pisos.value));
+
+      w = carga * 9 * pisos;
+      ag = (2.15 * w) / (0.85 * h/10);
+    //Saco los decimales para evitar cualquier incoherencia de la division
+
+      cx = (Math.sqrt(ag));
+      if (cx > 20) {
+        cx = Math.ceil(cx);
+        while (cx%5 != 0) { cx += 1; }
+        cy = 20;
+        while (((cx * cy) < ag) && (cy%5 != 0)) { cy += 1; }
+      }
+
+      else {
+        cx = 20;
+        cy = cx;
+      }
+    //Fuerzo el minimo de 20cm y que el resultado salte de 5 en 5
+
+      res.innerHTML = 'W= ' + w.toFixed(2) + 'KN <br />';
+      res.innerHTML += 'Ag= ' + ag.toFixed(2) + 'cm<sup>2</sup> <br />';
+      if (cx == cy) { res.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br />'; }
+      else {
+        res.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br />';
+        res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
+      }
+
+      copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+    //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
+
+    }
+
+
+    var x;
+    var y;
+    var h;
+    var losa = true;
+    var beta;
+    var gamma;
+
+    var res = document.getElementById('res');
+    var copiar = document.getElementById('copiar');
+
+    function Losa() {
+
+      var prin = document.getElementById('prin');
+
+      console.log('Se inicia la funcion de losas');
+      prin.innerHTML = `
+        <p>
+          Largo de Losa en X(m):
+          <input type="number" id="x" />
+          <br />
+          Largo de Losa en Y(m):
+          <input type="number" id="y" />
+          <br />
+          <button type="button" id="tipo">Cruzada</button>
+        </p>
+        <p id='uni_estilos' />
+        <p id='graficos'>
+        <p>
+          <input type='button' id='calcular' value='Calcular' />
+        </p>
+      `;
+
+      var uni_estilos = document.getElementById('uni_estilos');
+      var graficos = document.getElementById('graficos');
+      var tipo = document.getElementById('tipo');
+      tipo.addEventListener('click', CambiarTipo);
+      var calcular = document.getElementById('calcular');
+      calcular.addEventListener('click', LComienzo);
+    }
+
+    function LComienzo() {
+      console.log('Comenzo el calculo')
+      x = (document.getElementById('x')).value;
+      x = parseInt(parseFloat(x) * 100);
+      y = (document.getElementById('y')).value;
+      y = parseInt(parseFloat(y) * 100);
+      // Recibo los lados y los paso a centimetros
+
+      var mayor;
+      var menor;
+      if (x <= y) {
+        mayor = y;
+        menor = x;
+      }
+      else {
+        mayor = x;
+        menor = y;
+      }
+
+      if (tipo.innerText == 'Unidireccional'){
+        console.log('Calculo uni')
+        // Deberia de ir el tipo de apoyo y correr el numero que corresponde
+        apoyos = parseInt(apoyos.value);
+        if (mayor/menor < 2 && apoyos != 10) {
+          alert('Error: La losa que ingreso debería ser cruzada');
+          return;
+        }
+        h = menor/apoyos;
+      }
+
+      else {
+        console.log('Calculo Cruz')
+        beta = mayor/menor; //Resuelvo Beta
+        if (beta>=2){
+          alert('Error: La losa que ingreso debería ser Unidireccional');
+          return;
+        }
+        gamma = beta - 1;
+        gamma = 41 + (gamma*8);
+        h = (mayor - 12)/gamma;
+      }
+
+      if (h < 7) {h = 7;}
+      if (h - parseInt(h) > 0.02) {h = Math.ceil(h);}
+
+      if (tipo.innerText == 'Cruzada') {
+        res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br />';
+        res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br />';
+        res.innerHTML += 'h = ' + parseInt(h) + 'cm <br />';
+      }
+      else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br />';}
+
+
+      copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+    //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
+    }
+
+    function Graficar(){
+      apoyos = document.getElementById('apoyos');
+      if (apoyos.value == '10') {
+        graficos.innerHTML = `
+        <img src="https://lh6.googleusercontent.com/mYyZdkcP4w014YS3bcqr_Pt6cfXpCeSrcuhovvdCGLyfiuCf-VRbOMsjy0b6nuYLz1L-7Uih1zDsspKIYwh0Fc0sMrcTmEmVvde1fAL9_biFoAMRYg=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        `;
+      }
+
+      else if (apoyos.value == '20') {
+        graficos.innerHTML = `
+        <img src="https://lh4.googleusercontent.com/d8Q39Ii4eNEmKS9QnwcwH9hQo90j79Z1dP0CSjaWyor-6dDYIAOPaB0rqppJC3loXXiBV_BUnH6RPzwHDhEgKU5NS1Ywqodqo1ef2FNx5ABApHOTfA=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        `;
+      }
+
+      else if (apoyos.value == '24') {
+        graficos.innerHTML = `
+        <img src="https://lh3.googleusercontent.com/K5wPNSkrS1v0RqWx5MXqOxSkiAf66cavQJgnrYFKwGgRL9ivHiocRAq9j5S7CMuBdafTqEZmFOV51RCWQ1AMePtWgm3O0zGNNNl7En-4n9-6Lyzupg=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        `;
+      }
+
+
+      else {
+        graficos.innerHTML = `
+        <img src="https://lh3.googleusercontent.com/zdvLbPZRsdIJITZW4468lG13KMlShOPyMYBBSTWHaiL6sfvWTnCDHgoPIx514Rna-WpkLvgkMS-QKO8CtUj8JjddYGR7QWs8-5cPs7SKYFJc3NGgAw=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        `;
+      }
+    }
+
+    function CambiarTipo() {
+      losa ? tipo.innerText = "Cruzada":tipo.innerText = "Unidireccional";
+      losa =! losa;
+
+      if (tipo.innerText == 'Unidireccional'){
+        uni_estilos.innerHTML = `
+          <label for='apoyos'>Seleccione los apoyos correspondientes:</label>
+            <select id='apoyos' name='apoyos'>
+              <option value='10'>Voladizo</option>
+              <option value='20'>Articulado - Articulado</option>
+              <option value='24'>Articulado - Empotrado</option>
+              <option value='28'>Empotrado - Empotrado</option>
+            </select>
+        `;
+
+        var apoyos = document.getElementById('apoyos');
+        Graficar();
+        apoyos.addEventListener('change', Graficar);
+      }
+      else {
+        uni_estilos.innerHTML = '';
+        graficos.innerHTML = '';
+      }
+    }
+    //Cambio entre Cruzada y Unidireccional dentro del boton de HTML
+
+</script>
+  </body>
+</html>
