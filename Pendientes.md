@@ -1,4 +1,0 @@
-- Hay que arreglar la funcion copiar en columnas.js
-- Agregar calcular bases en columnas
-- Embellecer el html
-- Imprimir resultados en losas
