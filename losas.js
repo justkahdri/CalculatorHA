@@ -20,14 +20,15 @@ function Losa() {
       <br />
       <button type="button" id="tipo">Cruzada</button>
     </p>
-    <p id='intermedio'>
-    </p>
+    <p id='uni_estilos' />
+    <p id='graficos'>
     <p>
       <input type='button' id='calcular' value='Calcular' />
     </p>
   `;
 
-  var intermedio = document.getElementById('intermedio');
+  var uni_estilos = document.getElementById('uni_estilos');
+  var graficos = document.getElementById('graficos');
   var tipo = document.getElementById('tipo');
   tipo.addEventListener('click', CambiarTipo);
   var calcular = document.getElementById('calcular');
@@ -55,7 +56,8 @@ function LComienzo() {
 
   if (tipo.innerText == 'Unidireccional'){
     console.log('Calculo uni')
-    var apoyos = document.getElementById('apoyos'); // Deberia de ir el tipo de apoyo y correr el numero que corresponde
+    //var apoyos = document.getElementById('apoyos');
+    // Deberia de ir el tipo de apoyo y correr el numero que corresponde
     apoyos = parseInt(apoyos.value);
     h = menor/apoyos;
   }
@@ -72,19 +74,34 @@ function LComienzo() {
   if (h < 8) {h = 8;}
 }
 
+function Graficar(){
+  graficos.innerHTML = `
+  <img src="imagenes/${apoyos.value}.png" alt="Grafico de la opcion elegida" style="width:300px;height:200px;">
+  `;
+}
+
 function CambiarTipo() {
   losa ? tipo.innerText = "Cruzada":tipo.innerText = "Unidireccional";
   losa =! losa;
 
   if (tipo.innerText == 'Unidireccional'){
-    intermedio.innerHTML = `
+    uni_estilos.innerHTML = `
       <label for='apoyos'>Seleccione los apoyos correspondientes:</label>
         <select id='apoyos' name='apoyos'>
           <option value='10'>Voladizo</option>
-          <option value='12'>Otros</option>
+          <option value='20'>Articulado - Articulado</option>
+          <option value='24'>Articulado - Empotrado</option>
+          <option value='28'>Empotrado - Empotrado</option>
         </select>
     `;
+
+    var apoyos = document.getElementById('apoyos');
+    Graficar();
+    apoyos.addEventListener('change', Graficar);
   }
-  else {intermedio.innerHTML = '';}
+  else {
+    uni_estilos.innerHTML = '';
+    graficos.innerHTML = '';
+  }
 }
 //Cambio entre Cruzada y Unidireccional dentro del boton de HTML
