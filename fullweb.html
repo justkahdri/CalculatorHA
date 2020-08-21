@@ -19,7 +19,10 @@
     <p id="res"></p>
     <p id="copiar"></p>
     <script>
+    var remplazos = ['<sub>', '</sub>', '</sup>', '<sup>', '<br>'];
+
     function Clase () {
+      res.innerHTML = '';
       var ejercicio = document.getElementById('ejercicio');
       if (ejercicio.value == 'columna') {
         Columna ();
@@ -36,11 +39,6 @@
       }
     }
 
-    function fullcost(string) {
-      var full = parseFloat((string).replace(',', '.'));
-      return full;
-    }
-
     function copiarAlPortapapeles(id_elemento) {
 
       var aux = document.createElement("input");
@@ -49,9 +47,14 @@
       aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
       // Asigna el contenido del elemento especificado al valor del campo
 
-      var str = aux.value;
-      str = str.replace(/<br\s*[\/]?>/gi, "\n");
-      aux.value = str.replace(/<sub\s*[\/]?>/gi, "\n");
+      //var str = aux.value;
+
+      for (i in remplazos) {
+        aux.value = aux.value.split(remplazos[i]).join('');
+      }
+
+      //aux.value = str.replace(/<br\s*[\/]?>/gi, "\n");
+      //aux.value = str.replace('</sub>', "");
       //Borra los saltos de linea de HTML
 
       document.body.appendChild(aux);
@@ -70,10 +73,15 @@
 
     }
 
+    function fullcost(string) {
+      var full = parseFloat((string).replace(',', '.'));
+      return full;
+    }
 
     var ejercicio;
     var inicio = document.getElementById('inicio');
     inicio.addEventListener('click', Clase);
+
 
     var l;
     var h;
@@ -96,9 +104,9 @@
         <p>
           Largo de Viga(m):
           <input type="number" id="largo" />
-          <br />Tipo:
+          <br>Tipo:
           <button type="button" id="tipo">Isostatica</button>
-          <br />
+          <br>
           <input type="button" id="calcular" value="Calcular" />
         </p>
       `;
@@ -142,9 +150,9 @@
 
       d = h - 5;
 
-      res.innerHTML = 'h= ' + h + 'cm <br />';
-      res.innerHTML += 'bw= ' + bw + 'cm <br />';
-      res.innerHTML += 'd= ' + d + 'cm <br />';
+      res.innerHTML = 'h= ' + h + 'cm <br>';
+      res.innerHTML += 'bw= ' + bw + 'cm <br>';
+      res.innerHTML += 'd= ' + d + 'cm <br>';
       copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
     //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 
@@ -178,9 +186,9 @@
         <p>
           &Aacuterea de Influencia / Carga (m<sup>2</sup>):
           <input type='number' id='carga' />
-          <br />Cantidad de Pisos:
+          <br>Cantidad de Pisos:
           <input type='number' id='pisos' />
-          <br />
+          <br>
           <label for='H'>Seleccione el tipo de Hormigón:</label>
           <select id='H' name='H'>
             <option value='35'>H35</option>
@@ -188,7 +196,7 @@
             <option value='25'>H25</option>
             <option value='20'>H20</option>
           </select>
-          <br />
+          <br>
           <input type='button' id='calcular' value='Calcular' />
         </p>
       `;
@@ -225,15 +233,15 @@
       }
     //Fuerzo el minimo de 20cm y que el resultado salte de 5 en 5
 
-      res.innerHTML = 'W= ' + w.toFixed(2) + 'KN <br />';
-      res.innerHTML += 'Ag= ' + ag.toFixed(2) + 'cm<sup>2</sup> <br />';
-      if (cx == cy) { res.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br />'; }
+      res.innerHTML = 'W= ' + w.toFixed(2) + 'KN <br>';
+      res.innerHTML += 'Ag= ' + ag.toFixed(2) + 'cm<sup>2</sup> <br>';
+      if (cx == cy) { res.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br>'; }
       else {
-        res.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br />';
-        res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
+        res.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br>';
+        res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
       }
 
-      copiar.innerHTML = '<button onclick=\'Bases(w)\'>Calcular Bases</button> <br />'; //Inicia la funcion de bases
+      copiar.innerHTML = '<button onclick=\'Bases(w)\'>Calcular Bases</button> <br>'; //Inicia la funcion de bases
       copiar.innerHTML += '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
     //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
     }
@@ -251,15 +259,15 @@
 
     //  var ay = ax
 
-      res_bases = '<br />Wb= ' + w_base.toFixed(2) + 'KN <br />';
-      res_bases += 'Tadm= ' + t_adm + ' kg/cm<sup>2</sup> <br />';
-      res_bases += 'a<sub>x</sub>= a<sub>y</sub>= ' + ax + 'cm <br />';
+      res_bases = '<br>Wb= ' + w_base.toFixed(2) + 'KN <br>';
+      res_bases += 'Tadm= ' + t_adm + ' kg/cm<sup>2</sup> <br>';
+      res_bases += 'a<sub>x</sub>= a<sub>y</sub>= ' + ax + 'cm <br>';
 
       res.innerHTML += res_bases;
-    //  if (cx == cy) { res_bases.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br />'; }
+    //  if (cx == cy) { res_bases.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br>'; }
     //  else {
-    //    res_bases.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br />';
-    //    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
+    //    res_bases.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br>';
+    //    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
     //  }
 
       copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
@@ -286,10 +294,10 @@
         <p>
           Largo de Losa en X(m):
           <input type="number" id="x" />
-          <br />
+          <br>
           Largo de Losa en Y(m):
           <input type="number" id="y" />
-          <br />
+          <br>
           <button type="button" id="tipo">Cruzada</button>
         </p>
         <p id='uni_estilos' />
@@ -353,11 +361,11 @@
       if (h - parseInt(h) > 0.02) {h = Math.ceil(h);}
 
       if (tipo.innerText == 'Cruzada') {
-        res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br />';
-        res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br />';
-        res.innerHTML += 'h = ' + parseInt(h) + 'cm <br />';
+        res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br>';
+        res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br>';
+        res.innerHTML += 'h = ' + parseInt(h) + 'cm <br>';
       }
-      else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br />';}
+      else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br>';}
 
 
       copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';

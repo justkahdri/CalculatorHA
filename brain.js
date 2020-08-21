@@ -1,4 +1,7 @@
+var remplazos = ['<sub>', '</sub>', '</sup>', '<sup>', '<br>'];
+
 function Clase () {
+  res.innerHTML = '';
   var ejercicio = document.getElementById('ejercicio');
   if (ejercicio.value == 'columna') {
     Columna ();
@@ -23,9 +26,14 @@ function copiarAlPortapapeles(id_elemento) {
   aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
   // Asigna el contenido del elemento especificado al valor del campo
 
-  var str = aux.value;
-  str = str.replace(/<br\s*[\/]?>/gi, "\n");
-  aux.value = str.replace(/<sub\s*[\/]?>/gi, "\n");
+  //var str = aux.value;
+
+  for (i in remplazos) {
+    aux.value = aux.value.split(remplazos[i]).join('');
+  }
+
+  //aux.value = str.replace(/<br\s*[\/]?>/gi, "\n");
+  //aux.value = str.replace('</sub>', "");
   //Borra los saltos de linea de HTML
 
   document.body.appendChild(aux);

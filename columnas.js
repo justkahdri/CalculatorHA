@@ -16,11 +16,11 @@ function Columna() {
   console.log('llego a la columna');
   prin.innerHTML = `
     <p>
-      &Aacuterea de Influencia / Carga (m<sup>2</sup>):
+      &Aacuterea de Influencia / Carga (m&sup2):
       <input type='number' id='carga' />
-      <br />Cantidad de Pisos:
+      <br>Cantidad de Pisos:
       <input type='number' id='pisos' />
-      <br />
+      <br>
       <label for='H'>Seleccione el tipo de Hormigón:</label>
       <select id='H' name='H'>
         <option value='35'>H35</option>
@@ -28,7 +28,7 @@ function Columna() {
         <option value='25'>H25</option>
         <option value='20'>H20</option>
       </select>
-      <br />
+      <br>
       <input type='button' id='calcular' value='Calcular' />
     </p>
   `;
@@ -65,15 +65,15 @@ function CComienzo() {
   }
 //Fuerzo el minimo de 20cm y que el resultado salte de 5 en 5
 
-  res.innerHTML = 'W= ' + w.toFixed(2) + 'KN <br />';
-  res.innerHTML += 'Ag= ' + ag.toFixed(2) + 'cm<sup>2</sup> <br />';
-  if (cx == cy) { res.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br />'; }
+  res.innerHTML = 'W= ' + w.toFixed(2) + 'KN <br>';
+  res.innerHTML += 'Ag= ' + ag.toFixed(2) + 'cm&sup2 <br>';
+  if (cx == cy) { res.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br>'; }
   else {
-    res.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br />';
-    res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
+    res.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br>';
+    res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
   }
 
-  copiar.innerHTML = '<button onclick=\'Bases(w)\'>Calcular Bases</button> <br />'; //Inicia la funcion de bases
+  copiar.innerHTML = '<button onclick=\'Bases(w)\'>Calcular Bases</button> <br>'; //Inicia la funcion de bases
   copiar.innerHTML += '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 }
@@ -91,15 +91,15 @@ function Bases(w_columna) {
 
 //  var ay = ax
 
-  res_bases = '<br />Wb= ' + w_base.toFixed(2) + 'KN <br />';
-  res_bases += 'Tadm= ' + t_adm + ' kg/cm<sup>2</sup> <br />';
-  res_bases += 'a<sub>x</sub>= a<sub>y</sub>= ' + ax + 'cm <br />';
+  res_bases = '<br>Wb= ' + w_base.toFixed(2) + 'KN <br>';
+  res_bases += 'Tadm= ' + t_adm + ' kg/cm&sup2 <br>';
+  res_bases += 'a<sub>x</sub>= a<sub>y</sub>= ' + ax + 'cm <br>';
 
   res.innerHTML += res_bases;
-//  if (cx == cy) { res_bases.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br />'; }
+//  if (cx == cy) { res_bases.innerHTML += 'C<sub>x</sub>= C<sub>y</sub>= ' + cx + 'cm <br>'; }
 //  else {
-//    res_bases.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br />';
-//    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br />';
+//    res_bases.innerHTML += 'C<sub>x</sub>= ' + cx + 'cm <br>';
+//    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
 //  }
 
   copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';

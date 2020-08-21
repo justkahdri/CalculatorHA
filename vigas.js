@@ -19,15 +19,15 @@ function Viga() {
     <p>
       Largo de Viga(m):
       <input type="number" id="largo" />
-      <br />Tipo:
+      <br>Tipo:
       <button type="button" id="tipo">Isostatica</button>
-      <br />
+      <br>
       <input type="button" id="calcular" value="Calcular" />
     </p>
   `;
 
   var tipo = document.getElementById('tipo');
-  tipo.addEventListener('click', cambiarTipoviga);
+  tipo.addEventListener('click', cambiarTipoViga);
   var calcular = document.getElementById('calcular');
   calcular.addEventListener('click', VComienzo);
 
@@ -65,9 +65,9 @@ function VComienzo() {
 
   d = h - 5;
 
-  res.innerHTML = 'h= ' + h + 'cm <br />';
-  res.innerHTML += 'bw= ' + bw + 'cm <br />';
-  res.innerHTML += 'd= ' + d + 'cm <br />';
+  res.innerHTML = 'h= ' + h + 'cm <br>';
+  res.innerHTML += 'bw= ' + bw + 'cm <br>';
+  res.innerHTML += 'd= ' + d + 'cm <br>';
   copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 

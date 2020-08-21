@@ -17,10 +17,10 @@ function Losa() {
     <p>
       Largo de Losa en X(m):
       <input type="number" id="x" />
-      <br />
+      <br>
       Largo de Losa en Y(m):
       <input type="number" id="y" />
-      <br />
+      <br>
       <button type="button" id="tipo">Cruzada</button>
     </p>
     <p id='uni_estilos' />
@@ -84,11 +84,11 @@ function LComienzo() {
   if (h - parseInt(h) > 0.02) {h = Math.ceil(h);}
 
   if (tipo.innerText == 'Cruzada') {
-    res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br />';
-    res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br />';
-    res.innerHTML += 'h = ' + parseInt(h) + 'cm <br />';
+    res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br>';
+    res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br>';
+    res.innerHTML += 'h = ' + parseInt(h) + 'cm <br>';
   }
-  else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br />';}
+  else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br>';}
 
 
   copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
