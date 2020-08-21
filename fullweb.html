@@ -36,6 +36,11 @@
       }
     }
 
+    function fullcost(string) {
+      var full = parseFloat((string).replace(',', '.'));
+      return full;
+    }
+
     function copiarAlPortapapeles(id_elemento) {
 
       var aux = document.createElement("input");
@@ -99,7 +104,7 @@
       `;
 
       var tipo = document.getElementById('tipo');
-      tipo.addEventListener('click', CambiarTipo);
+      tipo.addEventListener('click', cambiarTipoViga);
       var calcular = document.getElementById('calcular');
       calcular.addEventListener('click', VComienzo);
 
@@ -108,7 +113,7 @@
     function VComienzo() {
       l = document.getElementById('largo');
     //Tomo el largo ingresado y lo asigno a la variable "l".
-      l = parseFloat(l.value);
+      l = fullcost(l.value);
       l = l * 100;
       l = parseInt(l)
     //Paso el largo en metros a centimetros
@@ -146,7 +151,7 @@
     }
 
 
-    function CambiarTipo() {
+    function cambiarTipoViga() {
       viga ? tipo.innerText = "Isostatica":tipo.innerText = "Continua";
       viga =! viga
     }
@@ -171,7 +176,7 @@
       console.log('llego a la columna');
       prin.innerHTML = `
         <p>
-          Carga que soporta la columna (m<sup>2</sup>):
+          &Aacuterea de Influencia / Carga (m<sup>2</sup>):
           <input type='number' id='carga' />
           <br />Cantidad de Pisos:
           <input type='number' id='pisos' />
@@ -196,7 +201,7 @@
 
     function CComienzo() {
       carga = document.getElementById('carga');
-      carga = parseFloat(carga.value);
+      carga = fullcost(carga.value);
       h = document.getElementById('H');
       h = parseInt(h.value);
       pisos = document.getElementById('pisos');
@@ -297,7 +302,7 @@
       var uni_estilos = document.getElementById('uni_estilos');
       var graficos = document.getElementById('graficos');
       var tipo = document.getElementById('tipo');
-      tipo.addEventListener('click', CambiarTipo);
+      tipo.addEventListener('click', cambiarTipoLosa);
       var calcular = document.getElementById('calcular');
       calcular.addEventListener('click', LComienzo);
     }
@@ -305,9 +310,9 @@
     function LComienzo() {
       console.log('Comenzo el calculo')
       x = (document.getElementById('x')).value;
-      x = parseInt(parseFloat(x) * 100);
+      x = parseInt(fullcost(x) * 100);
       y = (document.getElementById('y')).value;
-      y = parseInt(parseFloat(y) * 100);
+      y = parseInt(fullcost(y) * 100);
       // Recibo los lados y los paso a centimetros
 
       var mayor;
@@ -363,31 +368,31 @@
       apoyos = document.getElementById('apoyos');
       if (apoyos.value == '10') {
         graficos.innerHTML = `
-        <img src="https://lh6.googleusercontent.com/ON8YDrMo_w2RKuvje4fu__LhFtXW4eAFRJSXivlLqJiSlfKeVxCmkB3VaAnVdYHM_qq8fAWgKNsctYCEZE9SDCPKYoMaOjLyW4pF_v5EKHTz8GrB4u6d=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        <img src="https://i.ibb.co/cFt2tSj/Voladizo.png" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
         `;
       }
 
       else if (apoyos.value == '20') {
         graficos.innerHTML = `
-        <img src="https://lh4.googleusercontent.com/9nEa1zU3BUurry3TjOimeWXf9G-99Nuh7FBBWwQIwUNManRSSPeLCxtlqj7iviGiU1PNFCxhyRGi6elMa9oGZsZwTLwRLaH0Pf0fDXYPoXD_GoT5BUA=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        <img src="https://i.ibb.co/zbMCWGS/20.png" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
         `;
       }
 
       else if (apoyos.value == '24') {
         graficos.innerHTML = `
-        <img src="https://lh3.googleusercontent.com/euKQHTVHwXJDHivTNRNdKcVriknrqw5PR4APb-1SOlw-CI1okGghbdno4hFM2e-JvfMdDbAl-SpeW4Gkmuk30PC4nOZJERA71bu4V41hPAaxk7lWojcz=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        <img src="https://i.ibb.co/Mn18ScG/24.png" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
         `;
       }
 
 
       else {
         graficos.innerHTML = `
-        <img src="https://lh6.googleusercontent.com/WLFof9vQfyo3iIEbSZSnpcMcRk0F3lgWHjruh1mlMB8lcsD70cGpqC-ByGCSWdJnjJHYuD1zZOEnsaym7ePvV-zzjtS-WeOOuoUSzUr6O-MMjpWbkA=w1280" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
+        <img src="https://i.ibb.co/p1dRrwJ/28.png" alt="Hubo un error al cargar la imagen" style="width:300px;height:200px;">
         `;
       }
     }
 
-    function CambiarTipo() {
+    function cambiarTipoLosa() {
       losa ? tipo.innerText = "Cruzada":tipo.innerText = "Unidireccional";
       losa =! losa;
 

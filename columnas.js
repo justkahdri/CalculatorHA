@@ -16,7 +16,7 @@ function Columna() {
   console.log('llego a la columna');
   prin.innerHTML = `
     <p>
-      Carga que soporta la columna (m<sup>2</sup>):
+      &Aacuterea de Influencia / Carga (m<sup>2</sup>):
       <input type='number' id='carga' />
       <br />Cantidad de Pisos:
       <input type='number' id='pisos' />
@@ -41,7 +41,7 @@ function Columna() {
 
 function CComienzo() {
   carga = document.getElementById('carga');
-  carga = parseFloat(carga.value);
+  carga = fullcost(carga.value);
   h = document.getElementById('H');
   h = parseInt(h.value);
   pisos = document.getElementById('pisos');

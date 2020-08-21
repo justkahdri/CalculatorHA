@@ -33,7 +33,7 @@ function Losa() {
   var uni_estilos = document.getElementById('uni_estilos');
   var graficos = document.getElementById('graficos');
   var tipo = document.getElementById('tipo');
-  tipo.addEventListener('click', CambiarTipo);
+  tipo.addEventListener('click', cambiarTipoLosa);
   var calcular = document.getElementById('calcular');
   calcular.addEventListener('click', LComienzo);
 }
@@ -41,9 +41,9 @@ function Losa() {
 function LComienzo() {
   console.log('Comenzo el calculo')
   x = (document.getElementById('x')).value;
-  x = parseInt(parseFloat(x) * 100);
+  x = parseInt(fullcost(x) * 100);
   y = (document.getElementById('y')).value;
-  y = parseInt(parseFloat(y) * 100);
+  y = parseInt(fullcost(y) * 100);
   // Recibo los lados y los paso a centimetros
 
   var mayor;
@@ -102,7 +102,7 @@ function Graficar(){
   `;
 }
 
-function CambiarTipo() {
+function cambiarTipoLosa() {
   losa ? tipo.innerText = "Cruzada":tipo.innerText = "Unidireccional";
   losa =! losa;
 

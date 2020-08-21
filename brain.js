@@ -44,6 +44,12 @@ function copiarAlPortapapeles(id_elemento) {
 
 }
 
+function fullcost(string) {
+  var full = parseFloat((string).replace(',', '.'));
+  return full;
+}
+
+
 
 var ejercicio;
 var inicio = document.getElementById('inicio');

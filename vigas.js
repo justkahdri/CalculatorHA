@@ -27,7 +27,7 @@ function Viga() {
   `;
 
   var tipo = document.getElementById('tipo');
-  tipo.addEventListener('click', CambiarTipo);
+  tipo.addEventListener('click', cambiarTipoviga);
   var calcular = document.getElementById('calcular');
   calcular.addEventListener('click', VComienzo);
 
@@ -36,7 +36,7 @@ function Viga() {
 function VComienzo() {
   l = document.getElementById('largo');
 //Tomo el largo ingresado y lo asigno a la variable "l".
-  l = parseFloat(l.value);
+  l = fullcost(l.value);
   l = l * 100;
   l = parseInt(l)
 //Paso el largo en metros a centimetros
@@ -74,7 +74,7 @@ function VComienzo() {
 }
 
 
-function CambiarTipo() {
+function cambiarTipoViga() {
   viga ? tipo.innerText = "Isostatica":tipo.innerText = "Continua";
   viga =! viga
 }
