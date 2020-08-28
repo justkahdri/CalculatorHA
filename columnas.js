@@ -15,22 +15,34 @@ function Columna() {
 
   console.log('llego a la columna');
   prin.innerHTML = `
-    <p>
-      &Aacuterea de Influencia / Carga (m&sup2):
-      <input type='number' id='carga' />
-      <br>Cantidad de Pisos:
-      <input type='number' id='pisos' />
+    <form>
+      <label for='numeracion'>
+        <span>Numeraci&oacuten:</span>
+        <input type='input' id='numeracion' placeholder='C101' required maxlength="4" pattern='[Cc][0-9]{3}'/>
+      </label>
       <br>
-      <label for='H'>Seleccione el tipo de Hormigón:</label>
-      <select id='H' name='H'>
-        <option value='35'>H35</option>
-        <option value='30'>H30</option>
-        <option value='25'>H25</option>
-        <option value='20'>H20</option>
-      </select>
+      <label for='carga'>
+        <span>&Aacuterea de Influencia:</span>
+        <input type='number' id='carga' placeholder='Carga (m&sup2)' required min='0'/>
+      </label>
       <br>
-      <input type='button' id='calcular' value='Calcular' />
-    </p>
+      <label for='pisos'>
+        <span>Cantidad de Pisos:</span>
+        <input type='number' id='pisos' placeholder='Nro. de pisos' required min='0'/>
+      </label>
+      <br>
+      <label for='H'>
+        <span>Seleccione el tipo de Hormigón:</span>
+        <select id='H' name='H'>
+          <option value='35'>H35</option>
+          <option value='30'>H30</option>
+          <option value='25'>H25</option>
+          <option value='20'>H20</option>
+        </select>
+      </label>
+      <br>
+      <input class="main-section__button" type='button' id='calcular' value='Calcular' />
+    </form>
   `;
 
   var calcular = document.getElementById('calcular');
@@ -73,8 +85,11 @@ function CComienzo() {
     res.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
   }
 
-  copiar.innerHTML = '<button onclick=\'Bases(w)\'>Calcular Bases</button> <br>'; //Inicia la funcion de bases
-  copiar.innerHTML += '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+  numeracion = document.getElementById('numeracion').value;
+  anadirASidebar(numeracion, res);
+
+  copiar.innerHTML = '<button class="main-section__button" onclick=\'Bases(w)\'>Calcular Bases</button> <br>'; //Inicia la funcion de bases
+  copiar.innerHTML += '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 }
 
@@ -102,5 +117,5 @@ function Bases(w_columna) {
 //    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
 //  }
 
-  copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+  copiar.innerHTML = '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 }

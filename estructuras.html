@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Calcula el predimensionado de cualquier tipo de estructura de hormigon facilmente!">
+    <meta name="robots" content="index,follow">
+    <title>Calculadora de HA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <p>
-      <label for='ejercicio'>Seleccione un tipo de calculo:</label>
-      <select id='ejercicio' name='ejercicio'>
-        <option value='columna'>Columnas</option>
-        <option value='viga'>Vigas</option>
-        <option value='losa'>Losas</option>
-      </select>
-      <br>
-      <input type='button' id='inicio' value='Comenzar' />
-    </p>
-    <div id="prin"></div>
-    <div id='final'>
-      <p id="res"></p>
-      <p id="copiar"></p>
+    <header>
+      <h1 class="title">CalculadorHA</h1>
+      <!-- barra de navegación -->
+      <nav>
+        <ul class="nav">
+          <il><a href="#x">Home</a></il>
+          <il><a href="#y">Predimensionado</a></il>
+          <il><a href="#w">Dimensionado</a></il>
+        </ul>
+      </nav>
+    </header>
+    <!-- <div class="left-sidebar">
+      <p>Men&uacute lateral izquierdo</p>
+    </div> -->
+    <main>
+      <section class="main-section" id="seleccion">
+        <form class="main-section__form">
+          <label for='ejercicio'>
+            <span>Seleccione un tipo de calculo:</span>
+            <select id='ejercicio' name='ejercicio'>
+              <option value='columna'>Columnas</option>
+              <option value='viga'>Vigas</option>
+              <option value='losa'>Losas</option>
+            </select>
+          </label>
+        </form>
+        <input class="main-section__button" type='button' id='inicio' value='Comenzar'/>
+      </section>
+      <section class="main-section" id="prin"></section>
+      <section class="main-section" id='final'>
+        <p id="res"></p>
+        <p id="copiar"></p>
+      </section>
+    </main>
+    <div class="right-sidebar">
+      <h2 class="title" id="historial">Historial de C&aacutelculos</h2>
     </div>
+    <div class="gap"></div>
+    <footer>Made by @JustKahdri</footer>
     <script src="brain.js"></script>
     <script src="columnas.js"></script>
     <script src="vigas.js"></script>

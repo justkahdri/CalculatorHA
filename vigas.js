@@ -16,14 +16,17 @@ function Viga() {
 
   console.log('llego a la viga');
   prin.innerHTML = `
-    <p>
-      Largo de Viga(m):
-      <input type="number" id="largo" />
-      <br>Tipo:
-      <button type="button" id="tipo">Isostatica</button>
-      <br>
-      <input type="button" id="calcular" value="Calcular" />
-    </p>
+    <form>
+      <label for='largo'>
+        <span>Largo de Viga(m):</span>
+        <input type="number" id="largo" />
+      </label><br>
+      <label for='tipo'>
+        <span>Tipo:</span>
+        <button class="main-section__button" type="button" id="tipo">Isostatica</button>
+      </label><br>
+      <input class="main-section__button" type="button" id="calcular" value="Calcular" />
+    </form>
   `;
 
   var tipo = document.getElementById('tipo');
@@ -68,7 +71,7 @@ function VComienzo() {
   res.innerHTML = 'h= ' + h + 'cm <br>';
   res.innerHTML += 'bw= ' + bw + 'cm <br>';
   res.innerHTML += 'd= ' + d + 'cm <br>';
-  copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+  copiar.innerHTML = '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 
 }

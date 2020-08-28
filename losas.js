@@ -14,26 +14,31 @@ function Losa() {
 
   console.log('Se inicia la funcion de losas');
   prin.innerHTML = `
-    <p>
-      Largo de Losa en X(m):
-      <input type="number" id="x" />
-      <br>
-      Largo de Losa en Y(m):
-      <input type="number" id="y" />
-      <br>
-      <button type="button" id="tipo">Cruzada</button>
-    </p>
+    <form>
+      <label for='x'>
+        <span>Ancho de Losa:</span>
+        <input type="number" id="x" placeholder='Lx (metros)'/>
+      </label><br>
+      <label for='y'>
+        <span>Largo de Losa:</span>
+        <input type="number" id="y" placeholder='Ly (metros)'/>
+      </label><br>
+      <label for='tipo_losa'>
+        <span>Tipo:</span>
+        <button class="main-section__button" type="button" id="tipo_losa">Cruzada</button>
+      </label>
+    </form>
     <p id='uni_estilos' />
     <p id='graficos'>
     <p>
-      <input type='button' id='calcular' value='Calcular' />
+      <input class="main-section__button" type='button' id='calcular' value='Calcular' />
     </p>
   `;
 
   var uni_estilos = document.getElementById('uni_estilos');
   var graficos = document.getElementById('graficos');
-  var tipo = document.getElementById('tipo');
-  tipo.addEventListener('click', cambiarTipoLosa);
+  var tipo_losa = document.getElementById('tipo_losa');
+  tipo_losa.addEventListener('click', cambiarTipoLosa);
   var calcular = document.getElementById('calcular');
   calcular.addEventListener('click', LComienzo);
 }
@@ -57,7 +62,7 @@ function LComienzo() {
     menor = y;
   }
 
-  if (tipo.innerText == 'Unidireccional'){
+  if (tipo_losa.innerText == 'Unidireccional'){
     console.log('Calculo uni')
     // Deberia de ir el tipo de apoyo y correr el numero que corresponde
     apoyos = parseInt(apoyos.value);
@@ -83,7 +88,7 @@ function LComienzo() {
   if (h < 7) {h = 7;}
   if (h - parseInt(h) > 0.02) {h = Math.ceil(h);}
 
-  if (tipo.innerText == 'Cruzada') {
+  if (tipo_losa.innerText == 'Cruzada') {
     res.innerHTML = '&#946 = ' + beta.toFixed(2) + ' <br>';
     res.innerHTML += '&#947 = ' + gamma.toFixed(2) + ' <br>';
     res.innerHTML += 'h = ' + parseInt(h) + 'cm <br>';
@@ -91,22 +96,22 @@ function LComienzo() {
   else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br>';}
 
 
-  copiar.innerHTML = '<button onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
+  copiar.innerHTML = '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 }
 
 function Graficar(){
   apoyos = document.getElementById('apoyos');
   graficos.innerHTML = `
-  <img src="imagenes/${apoyos.value}.png" alt="Grafico de la opcion elegida" style="width:300px;height:200px;">
+  <img src="imagenes/${apoyos.value}.png" class='losas' alt="Grafico de la opcion elegida">
   `;
 }
 
 function cambiarTipoLosa() {
-  losa ? tipo.innerText = "Cruzada":tipo.innerText = "Unidireccional";
+  losa ? tipo_losa.innerText = "Cruzada":tipo_losa.innerText = "Unidireccional";
   losa =! losa;
 
-  if (tipo.innerText == 'Unidireccional'){
+  if (tipo_losa.innerText == 'Unidireccional'){
     uni_estilos.innerHTML = `
       <label for='apoyos'>Seleccione los apoyos correspondientes:</label>
         <select id='apoyos' name='apoyos'>

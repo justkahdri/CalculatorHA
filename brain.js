@@ -2,6 +2,7 @@ var remplazos = ['<sub>', '</sub>', '</sup>', '<sup>', '<br>'];
 
 function Clase () {
   res.innerHTML = '';
+  copiar.innerHTML = '';
   var ejercicio = document.getElementById('ejercicio');
   if (ejercicio.value == 'columna') {
     Columna ();
@@ -18,6 +19,19 @@ function Clase () {
   }
 }
 
+ function anadirASidebar(identficador, resultado, bases=false) {
+   var historial = document.getElementById('historial');
+   var ultimoEjercicio = document.createElement('details');
+
+   ultimoEjercicio.innerHTML = `
+    <summary>${identficador}</summary>
+    ${resultado.innerHTML}
+    <span class='erase'>Eliminar del historial</span>
+   `;
+
+   historial.parentNode.insertBefore(ultimoEjercicio, historial.nextSibling);
+}
+
 function copiarAlPortapapeles(id_elemento) {
 
   var aux = document.createElement("input");
@@ -31,10 +45,7 @@ function copiarAlPortapapeles(id_elemento) {
   for (i in remplazos) {
     aux.value = aux.value.split(remplazos[i]).join('');
   }
-
-  //aux.value = str.replace(/<br\s*[\/]?>/gi, "\n");
-  //aux.value = str.replace('</sub>', "");
-  //Borra los saltos de linea de HTML
+  //Borra las etiquetas de HTML
 
   document.body.appendChild(aux);
   // Añade el campo a la página
