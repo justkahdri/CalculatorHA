@@ -1,8 +1,10 @@
 var remplazos = ['<sub>', '</sub>', '</sup>', '<sup>', '<br>'];
 
 function Clase () {
-  res.innerHTML = '';
-  copiar.innerHTML = '';
+  var clear = [res, copiar, uni_estilos, corte_losa];
+  for (i in clear) {
+    clear[i].innerHTML = '';
+  }
   var ejercicio = document.getElementById('ejercicio');
   if (ejercicio.value == 'columna') {
     Columna ();
@@ -22,6 +24,10 @@ function Clase () {
  function anadirASidebar(identficador, resultado, bases=false) {
    var historial = document.getElementById('historial');
    var ultimoEjercicio = document.createElement('details');
+
+   if (bases) {
+     historial.parentNode.removeChild(historial.parentNode.childNodes[2]);
+   }
 
    ultimoEjercicio.innerHTML = `
     <summary>${identficador}</summary>

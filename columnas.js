@@ -117,5 +117,8 @@ function Bases(w_columna) {
 //    res_bases.innerHTML += 'C<sub>y</sub>= ' + cy + 'cm <br>';
 //  }
 
+  numeracion = document.getElementById('numeracion').value;
+  anadirASidebar(numeracion + ' (con Bases)', res, bases=true);
+
   copiar.innerHTML = '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 }

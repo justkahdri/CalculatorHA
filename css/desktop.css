@@ -1,0 +1,38 @@
+/* Diseno responsive */
+main {
+  min-height: 185px;
+  display: grid;
+  grid-template: auto auto 1fr / 60% 40%;
+  grid-template-areas: 'seleccion seleccion'
+                       'prin resultado'
+                       'graficos resultado';
+/*  grid-column-gap: 25px; */
+}
+
+section {
+  margin: 0;
+}
+main #seleccion {
+  grid-area: seleccion;
+  align-self: end;
+  margin-top: 15px;
+  padding-bottom: 10px;
+}
+
+main #prin {
+  grid-area: prin;
+  align-self: top;
+}
+
+main #final {
+  grid-area: resultado;
+  align-self: start;
+  justify-self: center;
+  width: auto;
+}
+
+main #graficos {
+  grid-area: graficos;
+  align-self: end;
+  justify-self: center;
+}

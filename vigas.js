@@ -17,6 +17,10 @@ function Viga() {
   console.log('llego a la viga');
   prin.innerHTML = `
     <form>
+      <label for='numeracion'>
+        <span>Numeraci&oacuten:</span>
+        <input type='input' id='numeracion' placeholder='V101 o VE01' required maxlength="4" pattern='[Vv][0-9]{3}|[Vv][Ee][0-9]{2}' title='La numeraci&oacuten es seg&uacuten el tipo de estructura, el piso en el que se encuentra y el n%uacutemero de la misma'/>
+      <label/><br>
       <label for='largo'>
         <span>Largo de Viga(m):</span>
         <input type="number" id="largo" />
@@ -71,6 +75,10 @@ function VComienzo() {
   res.innerHTML = 'h= ' + h + 'cm <br>';
   res.innerHTML += 'bw= ' + bw + 'cm <br>';
   res.innerHTML += 'd= ' + d + 'cm <br>';
+
+  numeracion = document.getElementById('numeracion').value;
+  anadirASidebar(numeracion, res);
+
   copiar.innerHTML = '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 

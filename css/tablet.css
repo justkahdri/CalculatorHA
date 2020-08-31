@@ -1,0 +1,28 @@
+/* Diseno responsive */
+body {
+  grid-template: auto 1fr auto auto / 1fr auto;
+  grid-template-areas: 'header header'
+                       'main sidebar'
+                       'gap gap'
+                       'footer footer';
+}
+
+/* Header */
+header * {
+  margin: 0;
+}
+
+.nav * {
+  font-size: 1.6rem;
+}
+/* Main */
+main #final {
+  margin: 0;
+}
+
+
+/* Sidebars */
+.right-sidebar {
+  overflow-y: scroll;
+  text-align: left;
+}

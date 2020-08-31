@@ -1,0 +1,29 @@
+main {
+min-height: 185px;
+grid-template: auto auto 1fr / repeat(2, 1fr);
+grid-template-areas: 'seleccion graficos'
+                     'prin graficos'
+                     'prin resultado';
+}
+
+main #seleccion {
+  align-self: start;
+  margin-bottom: 45px;
+}
+
+.right-sidebar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: start;
+  justify-content: center;
+  grid-gap: 5px;
+  min-width: 258px;
+}
+
+.right-sidebar > .title {
+  grid-column: 1/3;
+}
+
+.right-sidebar > details {
+  align-self: start;
+}

@@ -4,14 +4,34 @@
     <meta charset="utf-8" />
     <meta name="description" content="Calcula el predimensionado de cualquier tipo de estructura de hormigon facilmente!">
     <meta name="robots" content="index,follow">
-    <title>Calculadora de HA</title>
+    <title>Calculadora de HA (beta)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/master.css">
+    <link rel="stylesheet" href="./css/phone.css">
+    <link
+      rel="stylesheet"
+      href="./css/tablet.css"
+      media="screen and (min-width: 580px)"
+    />
+    <link
+      rel="stylesheet"
+      href="./css/desktop.css"
+      media="screen and (min-width: 750px)"
+    />
+    <link
+      rel="stylesheet"
+      href="./css/large_desktop.css"
+      media="screen and (min-width: 920px)"
+    />
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1 class="title">CalculadorHA</h1>
+      <div class="header_item">
+        <figure class="badge">
+          <img src="./imagenes/logo.png">
+        </figure>
+        <h1 class="title">CalculadorHA</h1>
+      </div>
       <!-- barra de navegación -->
       <nav>
         <ul class="nav">
@@ -24,7 +44,7 @@
     <!-- <div class="left-sidebar">
       <p>Men&uacute lateral izquierdo</p>
     </div> -->
-    <main>
+    <main id="main_content">
       <section class="main-section" id="seleccion">
         <form class="main-section__form">
           <label for='ejercicio'>
@@ -39,12 +59,18 @@
         <input class="main-section__button" type='button' id='inicio' value='Comenzar'/>
       </section>
       <section class="main-section" id="prin"></section>
+      <section class="main-section" id="graficos">
+        <article id='uni_estilos'></article>
+        <article id='corte_losa'/></article>
+        <article id="avanzado"/></article>
+      </section>
       <section class="main-section" id='final'>
+        <!-- <h3 class="title">Resultado Final</h3> -->
         <p id="res"></p>
-        <p id="copiar"></p>
+        <span id="copiar"></span>
       </section>
     </main>
-    <div class="right-sidebar">
+    <div id="sidebar" class="right-sidebar">
       <h2 class="title" id="historial">Historial de C&aacutelculos</h2>
     </div>
     <div class="gap"></div>

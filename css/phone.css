@@ -8,30 +8,49 @@ html {
   font-family: 'Signika', 'Bahnschrift', sans-serif;
   font-size: 62.5%;
 }
+/* Personalizacion de colores */
 :root {
   --main-color: #F29F05;
   --secondary-color: rgb(42, 42, 42);
   --third-color: #BF4226;
-  /* --third-color: #732C2C; */
   --fourth-color: #F2F2F2; /* Claro */
+  --bg-color: #732C2C;
 }
 
 /* Diseno responsive */
 body {
   font-size: 1.2rem;
   display: grid;
-  height: 100vh;
-  grid-template: auto 1fr auto / auto 1fr auto;
+  min-height: 100vh;
+  grid-template: repeat(3, auto) 1fr auto / 1fr;
+  grid-template-areas: 'header' 'main' 'sidebar' 'gap' 'footer';
 }
 
 /* Estilo del header */
 header {
-  grid-column: 1/4;
+  grid-area: header;
   display: flex;
+  flex-wrap: wrap;
   background-color: var(--secondary-color);
-  padding: 0 1vw;
+  padding: 1vh 1vw;
   justify-content: space-between;
   align-items: center;
+}
+
+.header_item {
+  display: inherit;
+  align-content: center;
+}
+.badge {
+  width: 40px;
+}
+
+.badge img {
+  width: 100%;
+}
+
+header * {
+  margin: 0 auto;
 }
 
 .nav * {
@@ -56,14 +75,9 @@ h1 {
 
 /* Estilo del Main */
 main {
+  grid-area: main;
+  min-height: 390px;
   background-color: var(--third-color);
-  grid-column: 2/3;
-  min-width: 50vw;
-  /* margin: auto;
-   margin-top: 15px;
-  width: 80%;
-  height: auto;
-  border-radius: 8px; */
   padding: 10px 20px;
 }
 
@@ -89,18 +103,51 @@ section {
   font-weight: bold;
 }
 
+/* Style Resultado */
+
+#final {
+  width: 50%;
+  min-width: 148px;
+  margin: auto;
+}
+
+#final > *{
+  background-color: var(--fourth-color);
+  padding: 10px;
+}
+
+#final > #res {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+#final > #copiar {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  display: block;
+  width: 100%;
+}
+
+#final > *:empty {
+  padding: 0;
+  width: auto;
+}
+
+#final .main-section__button {
+  width: 18rem;
+  max-width: 100%;
+}
 
 /* Sidebars */
-.left-sidebar {
-  grid-column: 1/2;
-  padding: 10px;
-}
-
 .right-sidebar {
-  grid-column: 3/4;
+  grid-area: sidebar;
+  display: inline-block;
+  background-color: var(--fourth-color);
   padding: 10px;
+  text-align: center;
 }
 .right-sidebar .title {
+  margin: auto;
   margin-bottom: 1vh;
 }
 
@@ -122,9 +169,14 @@ details .erase {
 }
 
 /* Footer */
+.gap {
+  grid-area: gap;
+  background-color: var(--secondary-color);
+}
+
 footer {
+  grid-area: footer;
   text-align: center;
-  grid-column: 1/4;
   background-color: var(--secondary-color);
   color: white;
 }
@@ -132,18 +184,18 @@ footer {
 
 /* Diseno de Imagenes */
 .losas {
-  width: 49.5vw;
-  height: 33vw;
+  width: 90vw;
+  height: 60vw;
   max-width: 300px;
   max-height: 200px;
 }
 
 input:invalid {
-  border: 2px dashed red;
+  border: 1px solid red;
 }
 
 input:invalid:required {
-  background-image: linear-gradient(to right, pink, lightgreen);
+  background-image: linear-gradient(to right, pink, rgb(255, 209, 70));
 }
 
 input:valid {

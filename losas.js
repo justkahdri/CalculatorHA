@@ -15,6 +15,10 @@ function Losa() {
   console.log('Se inicia la funcion de losas');
   prin.innerHTML = `
     <form>
+      <label for='numeracion'>
+        <span>Numeraci&oacuten:</span>
+        <input type='input' id='numeracion' placeholder='L101' required maxlength="4" pattern='[Ll][0-9]{3}'/>
+      <label/><br>
       <label for='x'>
         <span>Ancho de Losa:</span>
         <input type="number" id="x" placeholder='Lx (metros)'/>
@@ -28,15 +32,13 @@ function Losa() {
         <button class="main-section__button" type="button" id="tipo_losa">Cruzada</button>
       </label>
     </form>
-    <p id='uni_estilos' />
-    <p id='graficos'>
-    <p>
+    <div>
       <input class="main-section__button" type='button' id='calcular' value='Calcular' />
-    </p>
+    </div>
   `;
 
   var uni_estilos = document.getElementById('uni_estilos');
-  var graficos = document.getElementById('graficos');
+  var corte_losa = document.getElementById('corte_losa');
   var tipo_losa = document.getElementById('tipo_losa');
   tipo_losa.addEventListener('click', cambiarTipoLosa);
   var calcular = document.getElementById('calcular');
@@ -95,6 +97,8 @@ function LComienzo() {
   }
   else {res.innerHTML = 'h = ' + parseInt(h) + 'cm <br>';}
 
+  numeracion = document.getElementById('numeracion').value;
+  anadirASidebar(numeracion, res);
 
   copiar.innerHTML = '<button class="main-section__button" onclick=\'copiarAlPortapapeles("res")\'>Copiar Resultados</button>';
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
@@ -102,8 +106,10 @@ function LComienzo() {
 
 function Graficar(){
   apoyos = document.getElementById('apoyos');
-  graficos.innerHTML = `
-  <img src="imagenes/${apoyos.value}.png" class='losas' alt="Grafico de la opcion elegida">
+  corte_losa.innerHTML = `
+  <figure>
+    <img src="imagenes/${apoyos.value}.png" class='losas' alt="Grafico de la opcion elegida">
+  </figure>
   `;
 }
 
@@ -128,7 +134,7 @@ function cambiarTipoLosa() {
   }
   else {
     uni_estilos.innerHTML = '';
-    graficos.innerHTML = '';
+    corte_losa.innerHTML = '';
   }
 }
 //Cambio entre Cruzada y Unidireccional dentro del boton de HTML
