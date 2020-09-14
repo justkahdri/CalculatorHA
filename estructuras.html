@@ -51,6 +51,7 @@
             <span>Seleccione un tipo de calculo:</span>
             <select id='ejercicio' name='ejercicio'>
               <option value='columna'>Columnas</option>
+              <option value='tabique'>Tabiques</option>
               <option value='viga'>Vigas</option>
               <option value='losa'>Losas</option>
             </select>
@@ -62,7 +63,25 @@
       <section class="main-section" id="graficos">
         <article id='uni_estilos'></article>
         <article id='corte_losa'/></article>
-        <article id="avanzado"/></article>
+        <article id="avanzado"/>
+          <span class="ny">4m</span>
+          <span class="nx">2m</span>
+          <figure class="flecha-y">
+            <img src="./imagenes/fy1.svg">
+          </figure>
+          <figure class="flecha-y2">
+            <img src="./imagenes/fy1.svg">
+          </figure>
+          <figure class="flecha-x">
+            <img src="./imagenes/fx1.svg">
+          </figure>
+          <figure class="flecha-x2">
+            <img src="./imagenes/fx1.svg">
+          </figure>
+          <figure class="figura">
+            <img src="./imagenes/unidireccional.svg">
+          </figure>
+        </article>
       </section>
       <section class="main-section" id='final'>
         <!-- <h3 class="title">Resultado Final</h3> -->
@@ -77,6 +96,7 @@
     <footer>Made by @JustKahdri</footer>
     <script src="brain.js"></script>
     <script src="columnas.js"></script>
+    <script src="tabiques.js"></script>
     <script src="vigas.js"></script>
     <script src="losas.js"></script>
   </body>

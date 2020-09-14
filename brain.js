@@ -15,6 +15,9 @@ function Clase () {
   else if (ejercicio.value == 'losa') {
     Losa ();
   }
+  else if (ejercicio.value == 'tabique') {
+    Tabique ();
+  }
   else {
     console.log('fallo la seleccion de clase');
     alert('Ocurrio un error al iniciar el ejercicio');
@@ -32,10 +35,14 @@ function Clase () {
    ultimoEjercicio.innerHTML = `
     <summary>${identficador}</summary>
     ${resultado.innerHTML}
-    <span class='erase'>Eliminar del historial</span>
+    <span class='erase' onclick='erase_parent(this)'>Eliminar del historial</span>
    `;
 
    historial.parentNode.insertBefore(ultimoEjercicio, historial.nextSibling);
+}
+
+function erase_parent(element) {
+  element.parentNode.remove();
 }
 
 function copiarAlPortapapeles(id_elemento) {

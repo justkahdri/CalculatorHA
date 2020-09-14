@@ -160,12 +160,18 @@ section {
 }
 .right-sidebar summary {
   color: var(--main-color);
+  cursor: default;
 }
 
 details .erase {
   padding-top: 2px;
-  color: red;
+  color: rgb(219, 37, 37);
   font-size: 1rem;
+}
+
+details .erase:hover {
+  color: red;
+  cursor: pointer;
 }
 
 /* Footer */
@@ -183,13 +189,83 @@ footer {
 
 
 /* Diseno de Imagenes */
-.losas {
+main #graficos {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  max-width: 150px;
   width: 90vw;
-  height: 60vw;
-  max-width: 300px;
-  max-height: 200px;
+}
+#uni_estilos {
+  grid-row: 1/2;
+}
+#corte_losa {
+  grid-row: 2/3;
+}
+.losas {
+  width: 100%;
+}
+#avanzado {
+  font-size: 2rem;
+  grid-row: 3/4;
+  display: grid;
+  grid-template: 1fr auto 1fr auto / auto 1fr auto 1fr;
+  grid-template-areas: 'fy1 dib dib dib'
+                       'ny dib dib dib'
+                       'fy2 dib dib dib'
+                       '. fx1 nx fx2';
+  max-height: 300px;
 }
 
+
+#avanzado figure.flecha-y {
+  height: 100%;
+  grid-area: fy1;
+}
+#avanzado figure.flecha-y2 {
+  height: 100%;
+  grid-area: fy2;
+  transform: scaleY(-1);
+}
+#avanzado figure.flecha-x {
+  grid-area: fx1;
+  width: 100%;
+}
+#avanzado figure.flecha-x2 {
+  grid-area: fx2;
+  width: 100%;
+  transform: scaleX(-1);
+}
+.flecha-x img, .flecha-x2 img {
+  width: 100%;
+}
+.flecha-y img, .flecha-y2 img {
+  height: 100%;
+}
+#avanzado .figura img {
+  width: 100%;
+  height: 100%;
+}
+
+#avanzado figure.figura {
+  grid-area: dib;
+  height: 100%;
+  width: 100%;
+}
+#avanzado span {
+  font-weight: lighter;
+  text-align: center;
+  justify-self: center;
+  padding: 2px;
+}
+.ny {
+  grid-area: ny;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+.nx {
+  grid-area: nx;
+}
+/* Inputs */
 input:invalid {
   border: 1px solid red;
 }
