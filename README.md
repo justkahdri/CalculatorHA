@@ -1,9 +1,9 @@
-# Project Calculador HA
+# Project CalculatorHA
 Just a place to post my personal projects
 
 For now is just a project about Concrete Structures.
 The purpose is the automation of diverse Math problems.
-[Published here](https://sites.google.com/view/calculadorha)
+[Published here](https://www.calculadorha.io)
 
 ## Columns
   You put the weight distribution that holds the column, floors' quantity, the concrete quality and done!
