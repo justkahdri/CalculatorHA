@@ -1,12 +1,12 @@
-# Project-J5
+# Project Calculador HA
 Just a place to post my personal projects
 
-For now is just a project about HºAº Structures.
+For now is just a project about Concrete Structures.
 The purpose is the automation of diverse Math problems.
 [Published here](https://sites.google.com/view/calculadorha)
 
 ## Columns
-  You put the weight distribution that holds the column, floors' quantity, the HºAº quality and done!
+  You put the weight distribution that holds the column, floors' quantity, the concrete quality and done!
   + Glossary
       W = weight in KN
       H = HºAº quality
@@ -19,6 +19,22 @@ The purpose is the automation of diverse Math problems.
       h = height
       bw = width
       d = distance between the edge and the steel bars
+      
+## Slabs
+  Slabs can have steel bars in one or both directions and that depends of his lengh and width (one-direction < 2 <= both-directions)
+  + Glossary
+      x = width
+      y = lenght
+      h = height
+      β = widht-lenght relation
 
+## Concrete Wall
+   + Glossary
+      W = weight in KN
+      H = HºAº quality
+      Ag = Column minimum section
+      e = width
+      p = perimeter
+      
 ## Bugs known
-  - The copy function doesn't work too well in the Columns section
+  - There is an image of a slab fixed on the website 
