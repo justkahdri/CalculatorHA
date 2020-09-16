@@ -1,7 +1,3 @@
----
-permalink: /estructuras.html
----
-
 # Project CalculatorHA
 Just a place to post my personal projects
 
@@ -42,3 +38,7 @@ The purpose is the automation of diverse Math problems.
       
 ## Bugs known
   - There is an image of a slab fixed on the website 
+  
+---
+permalink: /index.html
+---
