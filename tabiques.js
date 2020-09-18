@@ -28,7 +28,7 @@ function Tabique() {
       <br>
       <label for='perimetro'>
         <span>Per&iacutemetro:</span>
-        <input type='number' id='perimetro' placeholder='Per&iacutemetro (m)' required min='0'/>
+        <input type='number' id='perimetro' placeholder='Perímetro (m)' required min='0'/>
       </label>
       <br>
       <label for='pisos'>
