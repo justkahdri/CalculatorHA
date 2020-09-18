@@ -104,15 +104,6 @@ function LComienzo() {
 //Imprimo los resultados y el boton para copiarlos dentro de los ultimos parrafos en HTML
 }
 
-function Graficar(){
-  apoyos = document.getElementById('apoyos');
-  corte_losa.innerHTML = `
-  <figure>
-    <img src="imagenes/${apoyos.value}.png" class='losas' alt="Grafico de la opcion elegida">
-  </figure>
-  `;
-}
-
 function cambiarTipoLosa() {
   losa ? tipo_losa.innerText = "Cruzada":tipo_losa.innerText = "Unidireccional";
   losa =! losa;
@@ -129,12 +120,14 @@ function cambiarTipoLosa() {
     `;
 
     var apoyos = document.getElementById('apoyos');
-    Graficar();
-    apoyos.addEventListener('change', Graficar);
+    apoyos.addEventListener('change', change_apoyos);
+    change_apoyos();
   }
   else {
     uni_estilos.innerHTML = '';
     corte_losa.innerHTML = '';
   }
+
+  advanced_images('Losa', tipo_losa.innerText, x/100, y/100);
 }
 //Cambio entre Cruzada y Unidireccional dentro del boton de HTML
