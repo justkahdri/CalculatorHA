@@ -1,6 +1,6 @@
 var remplazos = ['<sub>', '</sub>', '</sup>', '<sup>', '<br>'];
 
-function Clase () {
+function Clase() {
   var clear = [res, copiar, uni_estilos, corte_losa];
   for (i in clear) {
     clear[i].innerHTML = '';
