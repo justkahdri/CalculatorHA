@@ -1,38 +1,29 @@
-/* Diseno responsive */
 main {
-  min-height: 185px;
-  display: grid;
-  grid-template: auto auto 1fr / 60% 40%;
-  grid-template-areas: 'seleccion seleccion'
-                       'prin resultado'
-                       'graficos resultado';
-/*  grid-column-gap: 25px; */
+min-height: 185px;
+grid-template: auto auto 1fr / repeat(2, 1fr);
+grid-template-areas: 'seleccion graficos'
+                     'prin graficos'
+                     'prin resultado';
 }
 
-section {
-  margin: 0;
-}
 main #seleccion {
-  grid-area: seleccion;
-  align-self: end;
-  margin-top: 15px;
-  padding-bottom: 10px;
-}
-
-main #prin {
-  grid-area: prin;
-  align-self: top;
-}
-
-main #final {
-  grid-area: resultado;
   align-self: start;
-  justify-self: center;
-  width: auto;
+  margin-bottom: 45px;
 }
 
-main #graficos {
-  grid-area: graficos;
-  align-self: end;
-  justify-self: center;
+.right-sidebar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: start;
+  justify-content: center;
+  grid-gap: 5px;
+  min-width: 258px;
+}
+
+.right-sidebar > .title {
+  grid-column: 1/3;
+}
+
+.right-sidebar > details {
+  align-self: start;
 }
